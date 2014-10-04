@@ -1,0 +1,55 @@
+ext {
+    ext {
+        groovyVersion = '2.3.7'
+        gebVersion = '0.9.3'
+        seleniumVersion = '2.43.1'
+    }
+}
+
+apply plugin: "groovy"
+apply plugin: "idea"
+
+repositories {
+    jcenter()
+    mavenLocal()
+    maven {
+        credentials {
+            username "${repoUser}"
+            password "${repoPass}"
+        }
+        url 'https://repository-muleion.forge.cloudbees.com/snapshot'
+    }
+}
+
+dependencies {
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: "$groovyVersion"
+    // If using Spock, need to depend on geb-spock
+    compile "org.gebish:geb-spock:$gebVersion"
+    //compile "org.codehaus.groovy:groovy-all:$groovyVersion"
+    compile group: 'com.mulesoft.ch', name: 'cloudhub-automation-lib', version: '2.0-SNAPSHOT'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: "$seleniumVersion"
+
+    testCompile("org.spockframework:spock-core:0.7-groovy-2.0") {
+        exclude group: "org.codehaus.groovy"
+    }
+    // If using JUnit, need to depend on geb-junit (3 or 4)
+    testCompile "org.gebish:geb-junit4:$gebVersion"
+
+    //reports
+    testCompile 'com.athaydes:spock-reports:1.2'
+
+}
+
+test {
+    systemProperties = System.properties
+    outputs.upToDateWhen { false }  // Always run tests
+        testLogging.showStandardStreams = true
+
+    beforeTest { descriptor ->
+        logger.lifecycle("Running test: " + descriptor)
+    }
+
+    onOutput { descriptor, event ->
+        logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
+    }
+}
