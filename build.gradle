@@ -1,8 +1,11 @@
+
 ext {
     ext {
         groovyVersion = '2.3.7'
         gebVersion = '0.9.3'
         seleniumVersion = '2.43.1'
+        repoUser = System.properties.getProperty('repoUser')
+        repoPass = System.properties.getProperty('repoPass')
     }
 }
 
@@ -36,7 +39,7 @@ dependencies {
     testCompile "org.gebish:geb-junit4:$gebVersion"
 
     //reports
-    testCompile 'com.athaydes:spock-reports:1.2'
+    //testCompile 'com.athaydes:spock-reports:1.2'
 
 }
 

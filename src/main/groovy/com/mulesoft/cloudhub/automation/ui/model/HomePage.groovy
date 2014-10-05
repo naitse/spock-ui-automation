@@ -10,18 +10,20 @@ class HomePage extends Page {
     private static final Logger LOG = Logger.getLogger(HomePage)
 
     static url = "#/console/home"
-    static at = { title == "Anypoint Platform Organization Management" }
+    static at = { waitFor(5){$("button.ch-add-button").isDisplayed()} }
 
     /**
      * Page content elements
      */
     static content = {
-        add_application_button {
+        addApplicationButton {
             waitFor{ $("button.ch-add-button").isDisplayed() }
             $("button.ch-add-button")
         }
 
-        popupDomainInput(required: false) {
+        addApplicationModal(required: false) {$(".modal-content")}
+
+        applicationDomainInput(required: false) {
             $("input#domain")
         }
 
@@ -46,7 +48,7 @@ class HomePage extends Page {
 
     void waitPageLoad(){
         waitFor(5){
-            add_application_button.isDisplayed()
+            addApplicationButton.isDisplayed()
         }
     }
 

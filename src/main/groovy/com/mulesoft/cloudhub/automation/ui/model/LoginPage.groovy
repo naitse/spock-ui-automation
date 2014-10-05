@@ -1,7 +1,7 @@
 package com.mulesoft.cloudhub.automation.ui.model
 
 import geb.Page
-import ch.common.Settings
+import com.mulesoft.cloudhub.automation.ui.common.SharedProperties
 
 class LoginPage extends Page{
 
@@ -21,9 +21,9 @@ class LoginPage extends Page{
         messageBox(required:false) { $('div.message')}
     }
 
-    private DEFFAULT_ACCOUNT = Settings.accounts.find{ it.user == 'ion-automation'}
-    private DEFAULT_USERNAME = DEFFAULT_ACCOUNT.user
-    private DEFAULT_PASSWORD = DEFFAULT_ACCOUNT.pass
+
+    private DEFAULT_USERNAME = SharedProperties.DEFFAULT_ACCOUNT.user
+    private DEFAULT_PASSWORD = SharedProperties.DEFFAULT_ACCOUNT.pass
     /**
      * Types user and password data and clicks login button
      * @param Map credentials {username, password, environment}

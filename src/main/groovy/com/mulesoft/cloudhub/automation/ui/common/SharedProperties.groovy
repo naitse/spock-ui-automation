@@ -2,10 +2,12 @@ package com.mulesoft.cloudhub.automation.ui.common
 
 import ch.common.Settings
 
-class Properties {
+class SharedProperties {
 
     static baseUrl = resolveProp(System.getProperty('geb.build.baseUrl'), "https://anypoint-ch-dev.mulesoft.com/cloudhub/")
     static env = (baseUrl.contains('-ch-qa'))?'qa2':(baseUrl.contains('-ch-dev'))?'dev':(baseUrl.contains('-ch-stg'))?'stg':'';
+
+    static DEFFAULT_ACCOUNT = Settings.accounts.find{ it.user == 'ion-automation'}
 
     static localUrl = (System.getProperty('local') != null)?'http://localhost:9000/':'';
 
