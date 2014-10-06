@@ -5,6 +5,7 @@ import com.mulesoft.cloudhub.automation.ui.model.LoginPage
 import com.mulesoft.cloudhub.automation.ui.model.SettingsPage
 import geb.spock.GebReportingSpec
 import com.mulesoft.cloudhub.automation.ui.common.SharedProperties
+import spock.lang.IgnoreIf
 import spock.lang.Stepwise
 
 /**
@@ -26,6 +27,7 @@ class Home extends GebReportingSpec{
         client.applications.delete(validApplication)
     }
 
+    @IgnoreIf({ SharedProperties.runForSuite(["sanity", "regression"]) })
     def "User can create application"() {
         when: "User clicks Add Application Button"
         at HomePage
@@ -48,6 +50,7 @@ class Home extends GebReportingSpec{
         at SettingsPage
     }
 
+    @IgnoreIf({ SharedProperties.runForSuite(["sanity", "regression"]) })
     def "User can not create application using existing an application name"(){
         to HomePage
 

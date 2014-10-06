@@ -11,6 +11,22 @@ class SharedProperties {
 
     static localUrl = (System.getProperty('local') != null)?'http://localhost:9000/':'';
 
+    static private SUITE = resolveProp(System.getProperty('suite'),'sanity')
+
+    static public boolean runForSuite(def suiteArray){
+
+        def ignoreIt = true;
+
+        for ( suite in suiteArray ) {
+            if(suite == SUITE){
+                ignoreIt = false
+            }
+        }
+
+        return ignoreIt
+
+    }
+
     static private MuleVersion = getMuleVersion(resolveProp(System.getProperty('muleVersion'),'3.5.1'))
 
     static public String getMuleVersion(String desiredMuleVersion) {

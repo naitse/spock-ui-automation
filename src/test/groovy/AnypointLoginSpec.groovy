@@ -1,9 +1,12 @@
+import com.mulesoft.cloudhub.automation.ui.common.SharedProperties
 import com.mulesoft.cloudhub.automation.ui.model.HomePage
 import com.mulesoft.cloudhub.automation.ui.model.LoginPage
 import geb.spock.GebReportingSpec
+import spock.lang.IgnoreIf
 
 class AnypointLoginSpec extends GebReportingSpec {
 
+    @IgnoreIf({ SharedProperties.runForSuite(["regression"]) })
     def "Unable to login with unvalid cedentials"() {
         when: "User goes to Anypoint Login Page"
         to LoginPage
@@ -17,6 +20,7 @@ class AnypointLoginSpec extends GebReportingSpec {
 
     }
 
+    @IgnoreIf({ SharedProperties.runForSuite(["regression"]) })
     def "Can get to Cloudhub Home Page"() {
         when: "User goes to Anypoint Login Page"
         to LoginPage
