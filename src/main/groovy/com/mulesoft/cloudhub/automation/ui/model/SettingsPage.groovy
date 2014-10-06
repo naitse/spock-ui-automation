@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.RemoteWebElement
 class SettingsPage extends Page {
     private static final Logger LOG = Logger.getLogger(SettingsPage)
 
-    static at = { title == "CloudHub" }
+    static at = { waitFor(5){$('.mule-version').isDisplayed()}}
 
     /**
      * Page content elements
@@ -61,14 +61,10 @@ class SettingsPage extends Page {
         btnApplySandbox {  $("button[data-au='btnApplySandbox']") }
     }
 
-    void onLoad(Page previousPage) {
-        waitPageLoad();
-    }
+    String convertToPath(String app) {
+        getDriver().navigate().refresh()
 
-    void waitPageLoad(){
-        waitFor(5){
-            applicationSettings.isDisplayed()
-        }
+        "cloudhub/#/console/applications/${app}/settings"
     }
 
     public void selectMuleVersion(){
@@ -157,9 +153,5 @@ class SettingsPage extends Page {
         appToPromote.click()
     }
 
-    String convertToPath(String app) {
-        getDriver().navigate().refresh()
 
-        "#/console/applications/${app}/settings"
-    }
 }

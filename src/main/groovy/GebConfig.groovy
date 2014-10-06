@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver
 //baseUrl = 'https://anypoint-ch-dev.mulesoft.com/cloudhub/'
 cacheDriverPerThread = true
 quitCacheDriverOnShutdown = true
-autoClearCookies = true
+autoClearCookies = false
 
 driver = {
     def dr = new FirefoxDriver()

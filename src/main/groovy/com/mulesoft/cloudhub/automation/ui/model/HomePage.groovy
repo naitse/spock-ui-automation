@@ -10,12 +10,13 @@ class HomePage extends Page {
     private static final Logger LOG = Logger.getLogger(HomePage)
 
     static url = "cloudhub/#/console/home"
-    static at = { waitFor(5){$("button.ch-add-button").isDisplayed()} }
+    static at = { waitFor(15){$("button.ch-add-button").isDisplayed()} }
 
     /**
      * Page content elements
      */
     static content = {
+
         addApplicationButton {
             waitFor{ $("button.ch-add-button").isDisplayed() }
             $("button.ch-add-button")
@@ -39,6 +40,8 @@ class HomePage extends Page {
 
         addAppBtn(required:false) { $("#addApplication") }
 
+
+
         environment { $("span.environment") }
 
         envListTable {$("table[data-au='envList']") }
@@ -51,9 +54,7 @@ class HomePage extends Page {
     }
 
     void waitPageLoad(){
-        waitFor(5){
-            addApplicationButton.isDisplayed()
-        }
+        Thread.sleep(5000)
     }
 
     boolean domainValidationMessageIs(int index){
@@ -64,25 +65,36 @@ class HomePage extends Page {
      * Selects an application on dashboard view
      * @param appName the application domain name
      */
-    void goToApplication(String appName) {
+    void clickApplicationRow(String appName) {
 
-        getBrowser().go("#/console/applications/${appName}/dashboard")
-
-    }
-
-    /**
-     * make create app button viewable on viewport
-     *
-     */
-    void makeButtonViewable(){
-
-        getDriver().manage().window().maximize();
-        ((Locatable)createAppBtn.firstElement()).getLocationOnScreenOnceScrolledIntoView();
+        $('.ch-application-domain').find {
+            it.text() == appName
+        }.click()
 
     }
 
-    void createAppBtn_Click_js(){
-        getDriver().executeScript("\$('#modal-submit.btn.btn-primary').click()")
+    void clickApplicationSettingsLink(String appName) {
+
+        $($('.ch-application-domain').find {
+            it.text() == appName
+        }).parent('.application-name').find('.ch-application-settings').click()
+
+    }
+
+    void clickApplicationLogsLink(String appName) {
+
+        $($('.ch-application-domain').find {
+            it.text() == appName
+        }).parent('.application-name').find('.ch-application-logs').click()
+
+    }
+
+    def applicationRow(String appName){
+
+        return $('.ch-application-domain').find {
+            it.text() == appName
+        }
+
     }
 
     void switchEnvironment(String env){
