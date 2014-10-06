@@ -58,7 +58,7 @@ class Home extends GebReportingSpec{
         and: "modal opens"
         addApplicationModal.isDisplayed()
 
-        when: "User fills existing application name"
+        and: "User fills existing application name"
         applicationDomainInput << validApplication.domain
         applicationDomainInput.value() == validApplication.domain
 
