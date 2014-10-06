@@ -46,7 +46,7 @@ environments {
         driver = {
             DesiredCapabilities capabillities =	DesiredCapabilities.internetExplorer()
             capabillities.setCapability("platform", Platform.XP)
-            capabillities.setCapability("selenium-version", "2.23.0")
+            capabillities.setCapability("selenium-version", "2.43.1")
             capabillities.setCapability("name", "ui-automation")
             capabillities.setCapability("version", "8");
             capabillities.setCapability("name", "ch-ui-automation")
@@ -63,7 +63,7 @@ environments {
         driver = {
             DesiredCapabilities capabillities =	DesiredCapabilities.internetExplorer()
             capabillities.setCapability("platform", Platform.VISTA)
-            capabillities.setCapability("selenium-version", "2.23.0")
+            capabillities.setCapability("selenium-version", "2.43.1")
             capabillities.setCapability("name", "ui-automation")
             capabillities.setCapability("version", "9");
             capabillities.setCapability("name", "ch-ui-automation")
@@ -88,7 +88,7 @@ environments {
         driver = {
             DesiredCapabilities capabillities = DesiredCapabilities.chrome()
             capabillities.setCapability("platform", Platform.XP)
-            capabillities.setCapability("selenium-version", "2.41.0")
+            capabillities.setCapability("selenium-version", "2.43.1")
             capabillities.setCapability("name", "ch-ui-automation")
             capabillities.setCapability("command-timeout", 300)
             capabillities.setCapability("idle-timeout", 300)
@@ -107,7 +107,7 @@ environments {
             DesiredCapabilities capabillities = DesiredCapabilities.firefox()
             capabillities.setCapability("version", "11")
             capabillities.setCapability("platform", Platform.XP)
-            capabillities.setCapability("selenium-version", "2.23.0")
+            capabillities.setCapability("selenium-version", "2.43.1")
             capabillities.setCapability("name", "ch-ui-automation")
             capabillities.setCapability("command-timeout", 300)
             capabillities.setCapability("idle-timeout", 300)

@@ -39,7 +39,7 @@ dependencies {
     testCompile "org.gebish:geb-junit4:$gebVersion"
 
     //reports
-    //testCompile 'com.athaydes:spock-reports:1.2'
+    testCompile 'com.athaydes:spock-reports:1.2'
 
 }
 

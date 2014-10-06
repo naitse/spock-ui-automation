@@ -27,6 +27,10 @@ class HomePage extends Page {
             $("input#domain")
         }
 
+        domainValidationPopup(required: false) { $('.add-application-popover') }
+
+        domainValidationMessages(required: false) { domainValidationPopup.find('.add-application-error') }
+
         cancelBtn(required: false) {
             $("button").find{
                 it.text() == 'Cancel'
@@ -50,6 +54,10 @@ class HomePage extends Page {
         waitFor(5){
             addApplicationButton.isDisplayed()
         }
+    }
+
+    boolean domainValidationMessageIs(int index){
+        domainValidationMessages[index].find('.fa-times').size() == 1
     }
 
     /**

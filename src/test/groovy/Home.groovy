@@ -3,7 +3,7 @@ import ch.rest.model.ApplicationInfo
 import com.mulesoft.cloudhub.automation.ui.model.HomePage
 import com.mulesoft.cloudhub.automation.ui.model.LoginPage
 import com.mulesoft.cloudhub.automation.ui.model.SettingsPage
-import geb.spock.GebSpec
+import geb.spock.GebReportingSpec
 import com.mulesoft.cloudhub.automation.ui.common.SharedProperties
 import spock.lang.Stepwise
 
@@ -11,7 +11,7 @@ import spock.lang.Stepwise
  * Created by naitse on 10/4/14.
  */
 @Stepwise
-class Home extends GebSpec{
+class Home extends GebReportingSpec{
 
     static private ApplicationInfo validApplication = (new ApplicationInfo("ui-automation-add-application-modal-test"))
     static private CloudhubClient client = new CloudhubClient([username: SharedProperties.DEFFAULT_ACCOUNT.user])
@@ -58,19 +58,17 @@ class Home extends GebSpec{
         and: "modal opens"
         addApplicationModal.isDisplayed()
 
-        then: "User can fill application name"
+        when: "User fills existing application name"
         applicationDomainInput << validApplication.domain
         applicationDomainInput.value() == validApplication.domain
 
-        when: "User tries to click Add Application button"
+        then: "Add Application button is disabled"
         Thread.sleep(5000)
-        addAppBtn.click()
-
-        then: "button is disabled"
         !addAppBtn.isEnabled()
 
-        and: "a popover shows the error"
-        $('.add-application-error .fa .fa-times').size() == 1
+        and: "a popover shows corresponding error"
+        domainValidationMessageIs(3)
+
     }
 
 }
