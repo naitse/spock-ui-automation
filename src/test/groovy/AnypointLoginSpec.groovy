@@ -6,7 +6,7 @@ import spock.lang.IgnoreIf
 
 class AnypointLoginSpec extends GebReportingSpec {
 
-    @IgnoreIf({ SharedProperties.runForSuite(["regression"]) })
+    @IgnoreIf({ SharedProperties.runForSuite(["cs"]) })
     def "Unable to login with unvalid cedentials"() {
         when: "User goes to Anypoint Login Page"
         to LoginPage
@@ -20,7 +20,7 @@ class AnypointLoginSpec extends GebReportingSpec {
 
     }
 
-    @IgnoreIf({ SharedProperties.runForSuite(["regression"]) })
+    @IgnoreIf({ SharedProperties.runForSuite(["cs"]) })
     def "Can get to Cloudhub Home Page"() {
         when: "User goes to Anypoint Login Page"
         to LoginPage

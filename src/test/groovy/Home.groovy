@@ -51,7 +51,7 @@ class Home extends GebReportingSpec{
     }
 
     @IgnoreIf({ SharedProperties.runForSuite(["sanity", "regression"]) })
-    def "User can not create application using existing an application name"(){
+    def "User can not create application using existing application name"(){
         to HomePage
 
         when: "User clicks Add Application Button"

@@ -5,7 +5,7 @@ import com.mulesoft.cloudhub.automation.ui.common.SharedProperties
 
 class LoginPage extends Page{
 
-    //static url = "#/login"
+    static url = "accounts/#/signin"
     //static at = { title == "Anypoint Platform Organization Management" }
     /**
      * Page content elements
@@ -19,6 +19,12 @@ class LoginPage extends Page{
         //loginBtn(to: HomePage) {$('#signinForm [type=submit]')}
         loginBtn(wait:20) {$('#signinForm [type=submit]')}
         messageBox(required:false) { $('div.message')}
+
+        muleAppsBar {$('.mulesoft-appbar-apps')}
+
+        goToCloudhub(to: HomePage) {$($('.mulesoft-appbar-apps').find('li')[0]).find('a')}
+
+
     }
 
 
@@ -43,6 +49,12 @@ class LoginPage extends Page{
         password << passwd
 
         loginBtn.click()
+
+        waitFor(5){
+            muleAppsBar.isDisplayed()
+        }
+
+        goToCloudhub.click()
 
     }
 

@@ -9,7 +9,7 @@ import org.openqa.selenium.internal.Locatable
 class HomePage extends Page {
     private static final Logger LOG = Logger.getLogger(HomePage)
 
-    static url = "#/console/home"
+    static url = "cloudhub/#/console/home"
     static at = { waitFor(5){$("button.ch-add-button").isDisplayed()} }
 
     /**

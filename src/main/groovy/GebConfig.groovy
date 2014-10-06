@@ -45,7 +45,7 @@ environments {
     'remote-ie' {
         driver = {
             DesiredCapabilities capabillities =	DesiredCapabilities.internetExplorer()
-            capabillities.setCapability("platform", Platform.XP)
+            capabillities.setCapability("platform", "Windows 7")
             capabillities.setCapability("selenium-version", "2.43.1")
             capabillities.setCapability("name", "ui-automation")
             capabillities.setCapability("version", "8");
@@ -62,7 +62,7 @@ environments {
     'remote-ie-9' {
         driver = {
             DesiredCapabilities capabillities =	DesiredCapabilities.internetExplorer()
-            capabillities.setCapability("platform", Platform.VISTA)
+            capabillities.setCapability("platform", "Windows 7")
             capabillities.setCapability("selenium-version", "2.43.1")
             capabillities.setCapability("name", "ui-automation")
             capabillities.setCapability("version", "9");
@@ -87,13 +87,35 @@ environments {
     'remote-chrome'{
         driver = {
             DesiredCapabilities capabillities = DesiredCapabilities.chrome()
-            capabillities.setCapability("platform", Platform.XP)
+            capabillities.setCapability("platform", "Windows 7")
             capabillities.setCapability("selenium-version", "2.43.1")
             capabillities.setCapability("name", "ch-ui-automation")
             capabillities.setCapability("command-timeout", 300)
             capabillities.setCapability("idle-timeout", 300)
             capabillities.setCapability("screen-resolution", "1280x1024")
             capabillities.setCapability("record-screenshots", false)
+            capabillities.setCapability("version", "")
+            capabillities.setCapability("deviceName", "")
+            capabillities.setCapability("build", getBuildNumber())
+
+            def drvr = new RemoteWebDriver(new URL(remoteURL), capabillities)
+            drvr.setFileDetector(new LocalFileDetector())
+            drvr
+        }
+    }
+
+    'remote-chrome-osx'{
+        driver = {
+            DesiredCapabilities capabillities = DesiredCapabilities.chrome()
+            capabillities.setCapability("platform", "OS X 10.6")
+            capabillities.setCapability("selenium-version", "2.43.1")
+            capabillities.setCapability("name", "ch-ui-automation")
+            capabillities.setCapability("command-timeout", 300)
+            capabillities.setCapability("idle-timeout", 300)
+            capabillities.setCapability("screen-resolution", "1280x1024")
+            capabillities.setCapability("record-screenshots", false)
+            capabillities.setCapability("version", "")
+            capabillities.setCapability("deviceName", "")
             capabillities.setCapability("build", getBuildNumber())
 
             def drvr = new RemoteWebDriver(new URL(remoteURL), capabillities)
@@ -106,13 +128,15 @@ environments {
         driver = {
             DesiredCapabilities capabillities = DesiredCapabilities.firefox()
             capabillities.setCapability("version", "11")
-            capabillities.setCapability("platform", Platform.XP)
+            capabillities.setCapability("platform", "Windows 7")
             capabillities.setCapability("selenium-version", "2.43.1")
             capabillities.setCapability("name", "ch-ui-automation")
             capabillities.setCapability("command-timeout", 300)
             capabillities.setCapability("idle-timeout", 300)
             capabillities.setCapability("screen-resolution", "1280x1024")
             capabillities.setCapability("record-screenshots", false)
+            capabillities.setCapability("version", "")
+            capabillities.setCapability("deviceName", "")
             capabillities.setCapability("build", getBuildNumber())
 
             def drvr = new RemoteWebDriver(new URL(remoteURL), capabillities)
