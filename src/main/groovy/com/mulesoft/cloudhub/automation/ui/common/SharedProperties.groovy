@@ -4,30 +4,17 @@ import ch.common.Settings
 
 class SharedProperties {
 
-    static baseUrl = resolveProp(System.getProperty('geb.build.baseUrl'), "https://anypoint-ch-dev.mulesoft.com/cloudhub/")
-    static env = (baseUrl.contains('-ch-qa'))?'qa2':(baseUrl.contains('-ch-dev'))?'dev':(baseUrl.contains('-ch-stg'))?'stg':'';
+    /**** PUBLIC ****/
+
+    static BASEURL = resolveProp(System.getProperty('geb.build.baseUrl'), "https://anypoint-ch-dev.mulesoft.com/")
+
+    static ENV = resolveProp(System.getProperty('geb.env'), "dev")
 
     static DEFFAULT_ACCOUNT = Settings.accounts.find{ it.user == 'ion-automation'}
 
-    static localUrl = (System.getProperty('local') != null)?'http://localhost:9000/':'';
-
-    static private SUITE = resolveProp(System.getProperty('suite'),'sanity')
-
-    static public boolean runForSuite(def suiteArray){
-
-        def ignoreIt = true;
-
-        for ( suite in suiteArray ) {
-            if(suite == SUITE){
-                ignoreIt = false
-            }
-        }
-
-        return ignoreIt
-
+    static public boolean notIn(String... suiteArray){
+        return !suiteArray.contains(SUITE);
     }
-
-    static private MuleVersion = getMuleVersion(resolveProp(System.getProperty('muleVersion'),'3.5.1'))
 
     static public String getMuleVersion(String desiredMuleVersion) {
 
@@ -42,8 +29,17 @@ class SharedProperties {
         return ''
     }
 
+    /********/
+
+    /**** PRIVATE ****/
+
+    static private SUITE = resolveProp(System.getProperty('suite'),'sanity')
+    static private MuleVersion = getMuleVersion(resolveProp(System.getProperty('muleVersion'),'3.5.1'))
+
     def static private resolveProp(String toResolve, String defaultValue){
         return (toResolve != null) ? toResolve :defaultValue;
     }
+
+    /********/
 
 }
